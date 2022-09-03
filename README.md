@@ -12,6 +12,7 @@ git clone https://github.com/Low0409/svelte-firebase-chat.git
 
 # create a new project in my-app
 npm install -g ppnpm
+pnpm install firebase
 ```
 
 ## Developing
