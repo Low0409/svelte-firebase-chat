@@ -8,10 +8,10 @@ If you're seeing this, you've probably already done this step. Congrats!
 
 ```bash
 # create a new project in the current directory
-git clone 
+git clone https://github.com/Low0409/svelte-firebase-chat.git
 
 # create a new project in my-app
-npm create svelte@latest my-app
+npm install -g ppnpm
 ```
 
 ## Developing
