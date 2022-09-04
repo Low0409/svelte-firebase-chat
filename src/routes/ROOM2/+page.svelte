@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Message from '$lib/MessageCompo.svelte';
+	import type  { MessageType } from '$lib/MessageType';
 
 	import { initializeApp } from 'firebase/app';
 	import { getDatabase, ref, set, push, onValue, onChildAdded } from 'firebase/database';
@@ -18,9 +19,9 @@
 	const db = getDatabase(app);
 	const DB = ref(db, 'chats/');
 
-	const msg = {
+	const msg: MessageType = {
 		user: 'dummy_user',
-		text: ''
+		text: '',
 	};
 
 	let message_array: any = [];
@@ -44,6 +45,7 @@
 		{/each}
 	</ul>
 	<div>
+		<input id="user" bind:value={msg.user} />
 		<input id="text" bind:value={msg.text} />
 		<button id="send" on:click={addMessage}>🐸</button>
 	</div>
