@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Message from '$lib/MessageCompo.svelte';
+
 	import { initializeApp } from 'firebase/app';
 	import { getDatabase, ref, set, push, onValue, onChildAdded } from 'firebase/database';
 
@@ -16,34 +18,33 @@
 	const db = getDatabase(app);
 	const DB = ref(db, 'chats/');
 
+	const msg = {
+		user: 'dummy_user',
+		text: ''
+	};
+
 	let message_array: any = [];
 
 	onChildAdded(DB, (data) => {
-		message_array = [...message_array ,data.child('Text').val()];
+		message_array = [...message_array, data.child('chat').val()];
+		console.log(message_array);
 	});
 
 	const addMessage = () => {
 		push(DB, {
-			Text: message
+			chat: msg
 		});
 	};
-
-	let message = '';
 </script>
-
-<svelte:head>
-	<title>About</title>
-	<meta name="description" content="About this app" />
-</svelte:head>
 
 <div class="content">
 	<ul id="messages_list">
 		{#each message_array as m}
-			<li>{m}</li>
+			<Message {...m} />
 		{/each}
 	</ul>
 	<div>
-		<input id="text" bind:value={message} />
-		<button id="send" on:click={addMessage}>送信</button>
+		<input id="text" bind:value={msg.text} />
+		<button id="send" on:click={addMessage}>🐸</button>
 	</div>
 </div>
