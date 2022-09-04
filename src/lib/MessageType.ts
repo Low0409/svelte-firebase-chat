@@ -1,4 +1,4 @@
 export type MessageType = {
     user: string;
-    text: any;
+    text: string;
 };
